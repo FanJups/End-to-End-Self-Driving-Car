@@ -13,11 +13,11 @@ Capstone Project
 
 This is the Capstone project for the Udacity Self-Driving Car Nanodegree. We developed software to guide a real self-driving car around a test track. Using the Robot Operating System (ROS), we created nodes for traffic light detection and classification, trajectory planning, and control.
 
-![Result](./images/track_one.gif)
+![Result](https://github.com/Ansheel9/End-to-End-Self-Driving-Car/blob/master/extra/sd1.gif)
 
 The project proceeded in two stages. First, basic elements of the system were developed to run on Udacity’s simulator (Figure 1). The simulator is a virtual reality 3D environment with three lanes of traffic and eight lights. There are no other cars in the environment. In order to pass the first test, the simulated vehicle must stop “safely”, that is smoothly and before the white line, at each red light, decide to stop or continue through each yellow light, and continue through each green light at an appropriate speed.
 
-![Result](./images/track_one.gif)
+![Result](https://github.com/Ansheel9/End-to-End-Self-Driving-Car/blob/master/extra/sd2.jpg)
 
 Once the software system passes the first test on the simulator, it is transferred to Udacity’s Carla (Figure 2) to run on a real-world (albeit greatly simplified) track. Of note, the traffic lights encountered on the test track are substantially different than the traffic lights encountered in the simulator. Moreover, conditions on the test track include glare and poor contrast among other challenges.
 
@@ -25,7 +25,7 @@ Once the software system passes the first test on the simulator, it is transferr
 
 ROS is an open source software framework developed initially by Willow Garage (http://www.willowgarage.com) and is ideally suited for complex robot operations that often involve multiple systems running independently. For example, the multiple modules in Carla include: 1) a camera that produces raw images, 2) the object detection and classification system which consumes the raw images and produces the state of the light (i.e., green, yellow, red), 3) a decision-making system that decides whether to stop at a light or continue through it, and 4) the vehicle control system that is responsible for steering, accelerating and decelerating the car, just to name a few. Indeed, most robots and autonomous vehicles are may contain dozens of interacting modules. Writing a single program that integrates all of the modules in a self-driving car would be very challenging, to say the least.
 
-![Result](./images/track_one.gif)
+![Result](https://github.com/Ansheel9/End-to-End-Self-Driving-Car/blob/master/extra/sd3.png)
 
 ROS allows these systems to run independently while, at the same time, exchanging messages. The main mechanism for communicating between modules is through a “publisher-subscription” (commonly referred to as a “pub-sub” model). In certain cases, asynchronous communications, in which one subsystem can interrupt and block the processing of another system, are required. ROS supports both message passing protocols.
 
@@ -43,9 +43,9 @@ ROS has several tools that aid in the development of an integrated system. The s
 
 ## Object Detection
 
-In order to react correctly to the traffic lights, the software system must achieve: __1) Detection.__ Identify the traffic light housing with a bounding box and __2) Classification.__ Look within the bounding box to determine the state of the light (green, yellow, red). This can be done by taking advantage of ***transfer learning*** in which the object detection network is pretrained on a huge image datasets such as the [COCO Dataset](http://cocodataset.org/). [TensorFlow Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) offers a number of collection of detection models pre-trained on massive datasets. The pretrained network selected for use is the `ssd_mobilenet_v1_coco`.
+In order to react correctly to the traffic lights, the software system must achieve: __1) Detection.__ Identify the traffic light housing with a bounding box and __2) Classification.__ Look within the bounding box to determine the state of the light (green, yellow, red). This can be done by taking advantage of ***transfer learning*** in which the object detection network is pretrained on a huge image datasets such as the [COCO Dataset](http://cocodataset.org/). [TensorFlow Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) offers a number of collection of detection models pre-trained on massive datasets. The pretrained network selected for use is the `ssd_mobilenet_v2_coco`.
 
-![Result](./images/track_one.gif)
+![Result](https://github.com/Ansheel9/End-to-End-Self-Driving-Car/blob/master/extra/sd4.png)
 
 Since the automotive hardware is closer to mobile or embedded devices than cloud GPUs, the MobileNet neural network designed for running very efficiently (high FPS, low memory footprint) on mobile devices, was integrated as the base network. The MobileNet can reduce the size of cummulative parameters and therefore the computation required on automotive/ mobile hardwares with limited resources ([Andrew et al. 2017](https://arxiv.org/abs/1704.04861>)).
 
